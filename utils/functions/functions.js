@@ -1,5 +1,7 @@
-const { parse } = require('date-fns');
-
 module.exports.parseDate = sDate => {
-  return parse(sDate, 'dd.MM.yyyy', new Date());
+  const [day, month, year] = sDate.split('.').map(Number);
+
+  const parsedDate = new Date(Date.UTC(year, month - 1, day, 0, 0, 0));
+
+  return parsedDate;
 };
