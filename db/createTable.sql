@@ -4,5 +4,5 @@ create TABLE works(
   work_type TEXT,
   work_date TIMESTAMP, 
   plan_sum NUMERIC, 
-  plan_fact NUMERIC
+  fact_sum NUMERIC
 );
