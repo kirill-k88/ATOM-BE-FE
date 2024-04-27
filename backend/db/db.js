@@ -5,7 +5,7 @@ const {
   DB,
   DB_PASSWORD,
   DB_PORT
-} = require('../../utils/constants/db_connection');
+} = require('../utils/constants/db_connection');
 
 module.exports.pool = new Pool({
   user: DB_USER_NAME,

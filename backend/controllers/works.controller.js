@@ -1,6 +1,6 @@
 const { pool } = require('../db/db');
-const { parseDate } = require('../../utils/functions/functions');
-const { DB_INSERT_ERROR, DB_SELECT_ERROR } = require('../../utils/constants/db_connection');
+const { parseDate } = require('../utils/functions/functions');
+const { DB_INSERT_ERROR, DB_SELECT_ERROR } = require('../utils/constants/db_connection');
 
 class WorksController {
   async uploadWorks(req, res) {
