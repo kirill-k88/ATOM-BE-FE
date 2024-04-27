@@ -1,6 +1,6 @@
 const { pool } = require('../db/db');
-const { parseDate } = require('../utils/functions/functions');
-const { DB_INSERT_ERROR, DB_SELECT_ERROR } = require('../utils/constants/db_connection');
+const { parseDate } = require('../../utils/functions/functions');
+const { DB_INSERT_ERROR, DB_SELECT_ERROR } = require('../../utils/constants/db_connection');
 
 class WorksController {
   async uploadWorks(req, res) {
@@ -10,7 +10,6 @@ class WorksController {
     try {
       for (const w of list) {
         const date = parseDate(w.date);
-        console.log(date);
         const result = await pool.query(
           `INSERT INTO works (object_name, work_type, work_date, plan_sum, fact_sum) values ($1, $2, $3::timestamp, $4, $5) RETURNING *`,
           [w.object, w.works, date, w.planSum, w.planFact]
