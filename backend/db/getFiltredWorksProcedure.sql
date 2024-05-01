@@ -7,7 +7,9 @@ CREATE OR REPLACE FUNCTION get_filtred_data(
 RETURNS TABLE (
     object_name TEXT,
     work_type TEXT,
-    work_date TIMESTAMP
+    work_date TIMESTAMP,
+    plan_sum NUMERIC,
+    fact_sum NUMERIC
 )
 AS $$
 BEGIN
@@ -16,6 +18,8 @@ BEGIN
         w.object_name,
         w.work_type,
         w.work_date,
+        w.plan_sum,
+        w.fact_sum
     FROM
         works w
     WHERE
