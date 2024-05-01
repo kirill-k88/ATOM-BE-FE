@@ -5,6 +5,7 @@ CREATE OR REPLACE FUNCTION get_filtred_data(
     IN work_type_in TEXT DEFAULT NULL
 )
 RETURNS TABLE (
+    id INTEGER,
     object_name TEXT,
     work_type TEXT,
     work_date TIMESTAMP,
@@ -15,6 +16,7 @@ AS $$
 BEGIN
     RETURN QUERY
     SELECT
+        w.id,
         w.object_name,
         w.work_type,
         w.work_date,
