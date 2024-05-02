@@ -61,9 +61,6 @@ export const Chart: FC<IChartProps> = ({ works }) => {
       }
     },
     scales: {
-      xAxis: {
-        type: 'time'
-      },
       y: {
         ticks: {
           padding: 20
@@ -72,10 +69,5 @@ export const Chart: FC<IChartProps> = ({ works }) => {
     }
   };
 
-  return (
-    <Line
-      className={styles.chart}
-      options={options}
-      data={data}></Line>
-  );
+  return <Line className={styles.chart} options={options} data={data}></Line>;
 };
