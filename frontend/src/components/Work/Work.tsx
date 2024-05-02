@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
-import { TWork } from '../../utils/types/types';
+import type { TWork } from '../../utils/types/types';
+import { parseDate } from '../../utils/functions';
 
 import styles from './Work.module.scss';
 
@@ -10,12 +11,12 @@ interface IWorkProps {
 
 export const Work: FC<IWorkProps> = ({ work }) => {
   return (
-    <div className={styles.work}>
-      <p>{work.object_name}</p>
-      <p>{work.work_type}</p>
-      <p>{work.work_date}</p>
-      <p>{work.plan_sum}</p>
-      <p>{work.fact_sum}</p>
-    </div>
+    <>
+      <td className={styles.cell}>{work.object_name}</td>
+      <td className={styles.cell}>{work.work_type}</td>
+      <td className={styles.cell}>{parseDate(work.work_date)}</td>
+      <td className={styles.cell}>{work.plan_sum}</td>
+      <td className={styles.cell}>{work.fact_sum}</td>
+    </>
   );
 };

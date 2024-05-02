@@ -2,30 +2,36 @@ import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { TWork } from '../../utils/types/types';
+import { FormikHelpers } from 'formik';
+import { format } from 'date-fns';
 
-interface Ifilter {
-  period_start_in: string;
-  period_end_in: string;
-  object_name_in: string;
-  work_type_in: string;
+export interface Ifilter {
+  period_start: string;
+  period_end: string;
+  object_name: string;
+  work_type: string;
 }
 
-export const getWorks = createAsyncThunk<TWork[], Ifilter>(
+export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilter>]>(
   'works/getWorks',
-  async (filter, thunkAPI) => {
+  async (arr, thunkAPI) => {
+    const [filter, FormikHelpers] = arr;
+    console.log(filter);
     try {
       const response = await axios.get<TWork[]>(`http://localhost:3000/works`, {
         params: {
-          period_start_in: filter.period_start_in,
-          period_end_in: filter.period_end_in,
-          object_name_in: filter.object_name_in,
-          work_type_in: filter.work_type_in
+          period_start: filter.period_start && format(new Date(filter.period_start), 'dd.MM.yyyy'),
+          period_end: filter.period_end && format(new Date(filter.period_end), 'dd.MM.yyyy'),
+          object_name: filter.object_name,
+          work_type: filter.work_type
         }
       });
       return response.data;
     } catch (error) {
       const err = error as AxiosError;
       return thunkAPI.rejectWithValue(err.response?.data ?? 'Ошибка загрузки данных');
+    } finally {
+      FormikHelpers?.setSubmitting(false);
     }
   }
 );

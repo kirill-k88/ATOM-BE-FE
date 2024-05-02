@@ -25,10 +25,10 @@ class WorksController {
   }
 
   async getWorks(req, res) {
-    const period_start = req.query.period_start;
-    const period_end = req.query.period_end;
-    const object_name = req.query.object_name;
-    const work_type = req.query.work_type;
+    const period_start = req.query.period_start || null;
+    const period_end = req.query.period_end || null;
+    const object_name = req.query.object_name || null;
+    const work_type = req.query.work_type || null;
     const withSummary = req.query.with_summary;
 
     try {

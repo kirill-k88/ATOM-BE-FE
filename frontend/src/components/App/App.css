@@ -12,7 +12,15 @@
 }
 
 .mainContainer {
+  width: 80vw;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.worksContainer {
+  width: 90%;
+  display: flex;
+  justify-content: left;
+  gap: 15px;
 }
