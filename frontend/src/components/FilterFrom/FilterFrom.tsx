@@ -3,7 +3,8 @@ import { type FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '../../store/store';
-import { type Ifilter, getWorks } from '../../store/slices/worksSlice';
+import { getWorks } from '../../store/slices/worksSlice';
+import type { Ifilter } from '../../utils/types/types';
 
 import styles from './FilterFrom.module.scss';
 
@@ -23,6 +24,7 @@ export const FilterFrom: FC = () => {
       }}>
       {({ isSubmitting }) => (
         <Form className={styles.form}>
+          <h2>Задать фильтр</h2>
           <div className={styles.form__line}>
             <label htmlFor="period_start">С</label>
             <Field
@@ -37,8 +39,7 @@ export const FilterFrom: FC = () => {
               name="period_end"
               type="date"
             />
-          </div>
-          <div className={styles.form__line}>
+
             <label htmlFor="object_name">Объект</label>
             <Field
               id="object_name"

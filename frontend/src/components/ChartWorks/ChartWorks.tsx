@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { FC } from 'react';
 import {
   Chart as ChartJS,
@@ -10,26 +11,38 @@ import {
   Legend
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { TWork } from '../../utils/types/types';
 
-import styles from './Chart.module.scss';
+import styles from './ChartWorks.module.scss';
 import { parseDate } from '../../utils/functions';
+import { RootState } from '../../store/store';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-interface IChartProps {
-  works: TWork[];
-}
+export const ChartWorks: FC = () => {
+  const works = useSelector((state: RootState) => state.worksReducer);
 
-export const Chart: FC<IChartProps> = ({ works }) => {
   const labels: string[] = [];
   const plans: number[] = [];
   const facts: number[] = [];
+  let max_plan = 0;
+  let max_fact = 0;
+  let min_plan = 0;
+  let min_fact = 0;
 
-  works.forEach(w => {
+  works.works.forEach((w, i) => {
+    if (i === 0) {
+      max_plan = w.plan_sum;
+      min_plan = w.plan_sum;
+      max_fact = w.fact_sum;
+      min_fact = w.fact_sum;
+    }
     labels.push(parseDate(w.work_date));
     plans.push(w.plan_sum);
+    if (w.plan_sum > max_plan) max_plan = w.plan_sum;
+    if (w.plan_sum < min_plan) min_plan = w.plan_sum;
     facts.push(w.fact_sum);
+    if (w.fact_sum > max_fact) max_fact = w.fact_sum;
+    if (w.fact_sum < min_fact) min_fact = w.fact_sum;
   });
 
   const data = {
@@ -57,14 +70,18 @@ export const Chart: FC<IChartProps> = ({ works }) => {
         position: 'top' as const
       },
       title: {
-        display: false
+        display: true,
+        text: 'Тренд по выбранным работам'
       }
     },
     scales: {
       y: {
-        ticks: {
-          padding: 20
-        }
+        min:
+          Math.min(min_plan, min_fact) -
+          (Math.max(max_plan, max_fact) - Math.min(min_plan, min_fact)) * 0.1,
+        max:
+          Math.max(max_plan, max_fact) +
+          (Math.max(max_plan, max_fact) - Math.min(min_plan, min_fact)) * 0.1
       }
     }
   };

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION get_filtred_data(
+CREATE OR REPLACE FUNCTION public.get_filtred_data(
     IN period_start_in TIMESTAMP DEFAULT NULL,
     IN period_end_in TIMESTAMP DEFAULT NULL,
     IN object_name_in TEXT DEFAULT NULL,

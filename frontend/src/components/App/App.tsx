@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { getWorks } from '../../store/slices/worksSlice';
 import { FilterFrom } from '../FilterFrom/FilterFrom';
-import { Table } from '../Table/Table';
-import { Chart } from '../Chart/Chart';
+import { TableWorks } from '../TableWorks/TableWorks';
+import { ChartWorks } from '../ChartWorks/ChartWorks';
 
 import './App.css';
+import { GroupFrom } from '../GroupFrom/GroupFrom';
+import { TableGroupedWorks } from '../TableGroupedWorks/TableGroupedWorks';
+import { ChartGroups } from '../ChartGroups/ChartGroups';
+import { BarGroups } from '../BarGroups/BarGroups';
 
 export const App: FC = () => {
-  const works = useSelector((state: RootState) => state.worksReducer);
+  const groupedWorks = useSelector((state: RootState) => state.groupedWorksReducer);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -23,8 +27,16 @@ export const App: FC = () => {
     <div className="mainContainer">
       <FilterFrom />
       <div className="worksContainer">
-        <Table />
-        <Chart works={works.works} />
+        <TableWorks />
+        <ChartWorks />
+      </div>
+      <GroupFrom />
+      <div className="worksContainer">
+        <TableGroupedWorks />
+        <div className="chartsContainer">
+          <BarGroups />
+          {groupedWorks.withCommulative && <ChartGroups />}
+        </div>
       </div>
     </div>
   );
