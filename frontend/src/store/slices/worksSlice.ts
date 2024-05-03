@@ -1,22 +1,16 @@
 import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { TWork } from '../../utils/types/types';
+import type { Ifilter, TWork } from '../../utils/types/types';
 import { FormikHelpers } from 'formik';
 import { format } from 'date-fns';
-
-export interface Ifilter {
-  period_start: string;
-  period_end: string;
-  object_name: string;
-  work_type: string;
-}
 
 export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilter>]>(
   'works/getWorks',
   async (arr, thunkAPI) => {
     const [filter, FormikHelpers] = arr;
     console.log(filter);
+    thunkAPI.dispatch(worksActions.setFilter(filter));
     try {
       const response = await axios.get<TWork[]>(`http://localhost:3000/works`, {
         params: {
@@ -36,22 +30,28 @@ export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilte
   }
 );
 
-export interface IFilterSlice {
+export interface IworkSlice {
   isLoading: boolean;
   error: string | null;
   works: TWork[];
+  filter: Ifilter;
 }
 
-const initialState: IFilterSlice = {
+const initialState: IworkSlice = {
   isLoading: false,
   error: null,
-  works: []
+  works: [],
+  filter: { period_start: '', period_end: '', object_name: '', work_type: '' }
 };
 
 export const worksSlice = createSlice({
   name: 'works',
   initialState,
-  reducers: {},
+  reducers: {
+    setFilter: (state, action) => {
+      state.filter = action.payload;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getWorks.pending, state => {

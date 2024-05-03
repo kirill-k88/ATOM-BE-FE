@@ -5,9 +5,9 @@ import { TableVirtuoso } from 'react-virtuoso';
 import { RootState } from '../../store/store';
 import { Work } from '../Work/Work';
 
-import styles from './Table.module.scss';
+import styles from './TableWorks.module.scss';
 
-export const Table: FC = () => {
+export const TableWorks: FC = () => {
   const works = useSelector((state: RootState) => state.worksReducer);
 
   return (
