@@ -2,12 +2,12 @@
   padding: 2px;
   border: 1px solid grey;
   border-radius: 5px;
-  min-width: calc(600px - 4px);
+  width: 1250px;
   height: calc(500px - 6px);
 }
 
 .tableHeader {
-  width: calc(600px - 20px);
+  width: 1220px;
   height: 100px;
   table-layout: fixed;
   border-collapse: collapse;
@@ -18,8 +18,9 @@
   }
 
   &__th {
-    width: calc(100% / 5);
-    max-width: calc(100% / 5);
+    width: calc(1220px / 8);
+    max-width: calc(1220px / 8);
+    box-sizing: border-box;
     border: 1px solid #000;
     padding: 8px;
     background-color: rgba(256, 256, 256, 0.9);
@@ -28,26 +29,17 @@
 }
 
 .tableBody {
-  width: calc(600px - 20px);
+  width: 1220px;
   table-layout: fixed;
   border-collapse: collapse;
 
   &__container {
+    width: 100%;
     max-height: calc(400px - 6px);
     height: 100%;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
-
-    /*     &::-webkit-scrollbar {
-      width: 10px;
-      background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #eee;
-      cursor: pointer;
-    } */
   }
 
   &__tr {
@@ -59,8 +51,8 @@
   }
 
   &__td {
-    width: calc((95% / 5));
-    max-width: calc((95% / 5));
+    width: calc((1220px / 8));
+    max-width: calc((1220px / 8));
     box-sizing: border-box;
     border: 1px solid #ccc;
     padding: 8px;

@@ -5,7 +5,7 @@ import type { Ifilter, TWork } from '../../utils/types/types';
 import { FormikHelpers } from 'formik';
 import { format } from 'date-fns';
 
-export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilter>]>(
+export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilter> | null]>(
   'works/getWorks',
   async (arr, thunkAPI) => {
     const [filter, FormikHelpers] = arr;
