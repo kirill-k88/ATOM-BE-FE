@@ -11,6 +11,7 @@ import { RootState } from '../../store/store';
 import type { TGroupedWorks } from '../../utils/types/types';
 
 import styles from './TableGroupes.module.scss';
+import { getMonth } from '../../utils/functions';
 
 const columnHelper = createColumnHelper<TGroupedWorks>();
 
@@ -29,7 +30,7 @@ export const TableGroupes: FC = () => {
       }),
       columnHelper.accessor('work_month', {
         header: () => <span>Месяц</span>,
-        cell: info => info.getValue()
+        cell: info => getMonth(info.getValue())
       }),
       columnHelper.accessor('work_year', {
         header: () => <span>Год</span>,
@@ -69,9 +70,13 @@ export const TableGroupes: FC = () => {
       <table className={styles.tableHeader}>
         <thead className={styles.tableHeader__head}>
           {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id} className={styles.tableHeader__tr}>
+            <tr
+              key={headerGroup.id}
+              className={styles.tableHeader__tr}>
               {headerGroup.headers.map(header => (
-                <th key={header.id} className={styles.tableHeader__th}>
+                <th
+                  key={header.id}
+                  className={styles.tableHeader__th}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext())}
@@ -85,9 +90,13 @@ export const TableGroupes: FC = () => {
         <table className={styles.tableBody}>
           <tbody>
             {table.getRowModel().rows.map(row => (
-              <tr key={row.id} className={styles.tableBody__tr}>
+              <tr
+                key={row.id}
+                className={styles.tableBody__tr}>
                 {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} className={styles.tableBody__td}>
+                  <td
+                    key={cell.id}
+                    className={styles.tableBody__td}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

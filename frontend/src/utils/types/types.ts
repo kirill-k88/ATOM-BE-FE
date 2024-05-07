@@ -37,3 +37,5 @@ export interface Ifilter {
 export interface IgroupForm {
   withCommulative: boolean;
 }
+
+export type TFile = File | undefined;

@@ -12,6 +12,7 @@ import { TableWorks } from '../TableWorks/TableWorks';
 import { TableGroupes } from '../TableGroupes/TableGroupes';
 
 import './App.css';
+import { ReadFileForm } from '../ReadFileForm/ReadFileForm';
 
 export const App: FC = () => {
   const groupedWorks = useSelector((state: RootState) => state.groupedWorksReducer);
@@ -25,6 +26,7 @@ export const App: FC = () => {
 
   return (
     <div className="mainContainer">
+      <ReadFileForm />
       <FilterFrom />
       <div className="worksContainer">
         <TableWorks />

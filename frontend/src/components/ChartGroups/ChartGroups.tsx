@@ -39,7 +39,6 @@ export const ChartGroups: FC = () => {
     labels.push(`${getMonth(g.work_month)}.${g.work_year}`);
     plans.push(g.cumulative_plan_sum);
     if (g.cumulative_plan_sum > max_plan) max_plan = g.cumulative_plan_sum;
-    console.log(g.cumulative_plan_sum, max_plan);
     if (g.cumulative_plan_sum < min_plan) min_plan = g.cumulative_plan_sum;
     facts.push(g.cumulative_fact_sum);
     if (g.cumulative_fact_sum > max_fact) max_fact = g.cumulative_fact_sum;

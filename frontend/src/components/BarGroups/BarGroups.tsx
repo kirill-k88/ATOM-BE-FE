@@ -38,7 +38,6 @@ export const BarGroups: FC = () => {
     labels.push(`${getMonth(g.work_month)}.${g.work_year}`);
     plans.push(g.total_plan_sum);
     if (g.total_plan_sum > max_plan) max_plan = g.total_plan_sum;
-    console.log(g.total_plan_sum, max_plan);
     if (g.total_plan_sum < min_plan) min_plan = g.total_plan_sum;
     facts.push(g.total_fact_sum);
     if (g.total_fact_sum > max_fact) max_fact = g.total_fact_sum;

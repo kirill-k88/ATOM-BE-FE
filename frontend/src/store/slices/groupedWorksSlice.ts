@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { Ifilter, IgroupForm, TGroupedWorks } from '../../utils/types/types';
+import { BASEPATH } from '../../utils/constants/constants';
 
 export const getGroupedWorks = createAsyncThunk<
   TGroupedWorks[],
@@ -12,7 +13,7 @@ export const getGroupedWorks = createAsyncThunk<
   const [IgroupForm, filter, FormikHelpers] = arr;
   thunkAPI.dispatch(groupedWorksActions.setWithCommulative(IgroupForm));
   try {
-    const response = await axios.get<TGroupedWorks[]>(`http://localhost:3000/works`, {
+    const response = await axios.get<TGroupedWorks[]>(`${BASEPATH}works`, {
       params: {
         period_start: filter.period_start && format(new Date(filter.period_start), 'dd.MM.yyyy'),
         period_end: filter.period_end && format(new Date(filter.period_end), 'dd.MM.yyyy'),

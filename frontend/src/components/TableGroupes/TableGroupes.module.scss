@@ -7,7 +7,7 @@
 }
 
 .tableHeader {
-  width: 1220px;
+  width: 1230px;
   height: 100px;
   table-layout: fixed;
   border-collapse: collapse;
@@ -18,8 +18,8 @@
   }
 
   &__th {
-    width: calc(1220px / 8);
-    max-width: calc(1220px / 8);
+    width: calc(1230px / 8);
+    max-width: calc(1230px / 8);
     box-sizing: border-box;
     border: 1px solid #000;
     padding: 8px;
@@ -51,8 +51,8 @@
   }
 
   &__td {
-    width: calc((1220px / 8));
-    max-width: calc((1220px / 8));
+    width: calc((1230px / 8));
+    max-width: calc((1230px / 8));
     box-sizing: border-box;
     border: 1px solid #ccc;
     padding: 8px;

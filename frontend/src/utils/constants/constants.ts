@@ -1,5 +1,7 @@
 export const FETCH_SERVER_ERROR = 'Ошибка при загрузке данных с сервера';
 
+export const VALIDATION_FILE_ERROR = 'Файл обязателен для загрузки';
+
 export const MONTHS = {
   1: 'янв',
   2: 'фев',
@@ -14,3 +16,5 @@ export const MONTHS = {
   11: 'ноя',
   12: 'дек'
 };
+
+export const BASEPATH = 'http://localhost:3000/';

@@ -34,7 +34,7 @@ export const GroupFrom: FC = () => {
               className={styles.form__button}
               type="submit"
               disabled={isSubmitting}>
-              Применить
+              Получить данные
             </button>
           </div>
         </Form>

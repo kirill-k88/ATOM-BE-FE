@@ -1,0 +1,24 @@
+.fileInput {
+  width: 80%;
+  border: 1px dashed black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__inputContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  &__span {
+    color: red;
+  }
+}

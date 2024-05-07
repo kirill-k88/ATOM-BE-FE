@@ -4,15 +4,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Ifilter, TWork } from '../../utils/types/types';
 import { FormikHelpers } from 'formik';
 import { format } from 'date-fns';
+import { BASEPATH } from '../../utils/constants/constants';
 
 export const getWorks = createAsyncThunk<TWork[], [Ifilter, FormikHelpers<Ifilter> | null]>(
   'works/getWorks',
   async (arr, thunkAPI) => {
     const [filter, FormikHelpers] = arr;
-    console.log(filter);
     thunkAPI.dispatch(worksActions.setFilter(filter));
     try {
-      const response = await axios.get<TWork[]>(`http://localhost:3000/works`, {
+      const response = await axios.get<TWork[]>(`${BASEPATH}works`, {
         params: {
           period_start: filter.period_start && format(new Date(filter.period_start), 'dd.MM.yyyy'),
           period_end: filter.period_end && format(new Date(filter.period_end), 'dd.MM.yyyy'),

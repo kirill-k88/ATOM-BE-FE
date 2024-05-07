@@ -1,26 +1,24 @@
+const fs = require('fs');
 const { pool } = require('../db/db');
 const { parseDate } = require('../utils/functions/functions');
 const { DB_INSERT_ERROR, DB_SELECT_ERROR } = require('../utils/constants/db_connection');
 
 class WorksController {
   async uploadWorks(req, res) {
-    const list = req.body;
-    const workList = [];
-
     try {
-      for (const w of list) {
+      const jsonData = JSON.parse(req.file.buffer.toString());
+      for (const w of jsonData) {
         const date = parseDate(w.date);
         const result = await pool.query(
           `INSERT INTO works (object_name, work_type, work_date, plan_sum, fact_sum) values ($1, $2, $3::timestamp, $4, $5) RETURNING *`,
           [w.object, w.works, date, w.planSum, w.planFact]
         );
-        workList.push(result.rows[0]);
       }
 
-      res.send(workList);
-    } catch (err) {
-      res.send(DB_INSERT_ERROR);
-      console.log(err);
+      res.send('Файл JSON успешно прочитан и распарсен.');
+    } catch (error) {
+      console.error('Ошибка при парсинге JSON:', error);
+      res.status(500).send('Произошла ошибка при парсинге JSON.');
     }
   }
 

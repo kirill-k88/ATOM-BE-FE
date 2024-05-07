@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import { worksReducer } from './slices/worksSlice';
 import { groupedWorksReducer } from './slices/groupedWorksSlice';
+import { worksFileReducer } from './slices/worksFileSlice';
 
 export const store = configureStore({
   reducer: {
     worksReducer: worksReducer,
-    groupedWorksReducer: groupedWorksReducer
+    groupedWorksReducer: groupedWorksReducer,
+    worksFileReducer: worksFileReducer
   }
 });
 
